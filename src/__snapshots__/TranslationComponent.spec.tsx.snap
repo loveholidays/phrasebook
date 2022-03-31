@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Translation component ComponentWithChildren 1`] = `<DocumentFragment />`;
+
+exports[`Translation component Default 1`] = `<DocumentFragment />`;
+
+exports[`Translation component OneParamTwoComponents 1`] = `<DocumentFragment />`;
+
+exports[`Translation component TwoParamsOneComponent 1`] = `<DocumentFragment />`;

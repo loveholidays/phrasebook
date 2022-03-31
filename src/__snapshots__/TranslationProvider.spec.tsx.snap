@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TranslationProvider translates using useTranslation hook 1`] = `
+<DocumentFragment>
+  <span>
+    Search
+  </span>
+  <span>
+    1 review
+  </span>
+  <span>
+    4 reviews
+  </span>
+  <span>
+    Board Basis
+  </span>
+  <span>
+    All Inclusive
+  </span>
+</DocumentFragment>
+`;
