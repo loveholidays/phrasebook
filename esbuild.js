@@ -15,7 +15,6 @@ esbuild
     splitting: true,
     format: 'esm',
     target: ['es2019'],
-    jsx: 'preserve',
     external: [
       'react',
       'react-dom',
