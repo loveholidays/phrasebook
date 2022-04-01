@@ -12,7 +12,7 @@ If you found a bug you'd like to fix, open a PR.
 You can install all the dependencies with `npm`.
 
 ```
-npm
+npm i
 ```
 
 Useful commands:
