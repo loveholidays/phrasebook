@@ -1,9 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Translation component ComponentWithChildren 1`] = `<DocumentFragment />`;
+exports[`Translation component translates the default component 1`] = `
+<DocumentFragment>
+  param first a param second b component one 
+  <strong>
+    1234
+  </strong>
+   component 2 
+  <strong>
+    Y
+  </strong>
+   something at the end
+</DocumentFragment>
+`;
 
-exports[`Translation component Default 1`] = `<DocumentFragment />`;
+exports[`Translation component translates when the components have children 1`] = `
+<DocumentFragment>
+  this makes it possible to 
+  <a
+    href="/#"
+  >
+    make some parts
+  </a>
+   of the 
+  <strong>
+    text
+  </strong>
+   appear as links
+</DocumentFragment>
+`;
 
-exports[`Translation component OneParamTwoComponents 1`] = `<DocumentFragment />`;
+exports[`Translation component translates with one param and two components 1`] = `
+<DocumentFragment>
+  param first a component one 
+  <strong>
+    1234
+  </strong>
+   component 2 
+  <strong>
+    Y
+  </strong>
+   something at the end
+</DocumentFragment>
+`;
 
-exports[`Translation component TwoParamsOneComponent 1`] = `<DocumentFragment />`;
+exports[`Translation component translates with two params and one component 1`] = `
+<DocumentFragment>
+  param first a param second b component one 
+  <strong>
+    1234
+  </strong>
+   something at the end
+</DocumentFragment>
+`;

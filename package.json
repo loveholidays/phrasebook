@@ -14,7 +14,6 @@
     "build:clean": "rm -rf lib",
     "build:mjs": "node ./esbuild.js",
     "build:types": "tsc -p tsconfig.json --emitDeclarationOnly",
-    "build:remove-stories": "find lib -type f -name '*.stories.d.ts' -delete",
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx ./src",
     "lint:fix": "eslint --ext .ts,.tsx ./src --fix",
