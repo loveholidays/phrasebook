@@ -1,7 +1,7 @@
 {
   "name": "@loveholidays/phrasebook",
   "version": "0.0.1",
-  "description": "TBD",
+  "description": "A lightweight drop-in for i18next users",
   "sideEffects": false,
   "module": "lib/index.js",
   "main": "lib/index.js",
@@ -19,11 +19,27 @@
     "lint:fix": "eslint --ext .ts,.tsx ./src --fix",
     "lint:info": "eslint --print-config .eslintrc.js"
   },
-  "respository": {
+  "repository": {
     "type": "git",
-    "url": "TBD"
+    "url": "git+https://github.com/loveholidays/phrasebook.git"
   },
-  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/loveholidays/phrasebook/issues"
+  },
+  "homepage": "https://github.com/loveholidays/phrasebook#readme",
+  "keywords": [
+    "i18next",
+    "internationalization",
+    "i18n",
+    "translation",
+    "localization",
+    "l10n",
+    "globalization",
+    "phrasebook",
+    "loveholidays",
+    "preact",
+    "react"
+  ],
   "author": "",
   "license": "LGPL-3.0-or-later",
   "devDependencies": {
