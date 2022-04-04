@@ -31,7 +31,7 @@ jobs:
           npx changeset status
           if [ $? -ne 0 ]; then exit 1; fi
           npx changeset status --output status.json
-          HAS_CHANGESETS=$(node -e "console.log(require('./status.json')?.changesets?.length > 0)")
+          HAS_CHANGESETS=$(node -e "console.log(require('./status.json').changesets.length > 0)")
           rm -rf status.json
           echo "::set-output name=HAS_CHANGESETS::$HAS_CHANGESETS"
 
