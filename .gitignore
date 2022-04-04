@@ -4,6 +4,7 @@
 /lib
 /tmp
 /out-tsc
+status.json
 
 # dependencies
 /node_modules

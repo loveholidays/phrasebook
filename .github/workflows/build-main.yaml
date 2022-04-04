@@ -1,0 +1,65 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.LOVEHOLIDAYS_BUILD_PAT }}
+      NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+    steps:
+      - name: Checkout [main]
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install
+
+      # Sets HAS_CHANGESETS output to "false" when there are no changesets available, so we can skip
+      # building and publishing when there were only documentation changes etc.
+      - name: Check changesets
+        id: changesets
+        run: |
+          npx changeset status
+          if [ $? -ne 0 ]; then exit 1; fi
+          npx changeset status --output status.json
+          HAS_CHANGESETS=$(node -e "console.log(require('./status.json').changesets.length > 0)")
+          rm -rf status.json
+          echo "::set-output name=HAS_CHANGESETS::$HAS_CHANGESETS"
+
+      - name: Run tests
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: npm run test
+
+      - name: Update package versions
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: |
+          npx changeset version
+          npm install
+
+      - name: Run build
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: npm run build
+
+      - name: Commit version changes
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: |
+          git config --global user.name "build-loveholidays" && git config --global user.email "build@loveholidays.com"
+          git diff && git add .
+          git commit -m "Update package versions"
+          git push origin main
+
+      - name: Publish packages
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+          npx changeset publish
+          git push --follow-tags
