@@ -17,7 +17,8 @@
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx ./src && prettier -c '**/*.json' '**/*.md'",
     "lint:fix": "eslint --ext .ts,.tsx ./src --fix && prettier -w '**/*.json' '**/*.md'",
-    "lint:info": "eslint --print-config .eslintrc.js"
+    "lint:info": "eslint --print-config .eslintrc.js",
+    "changeset": "npx changeset"
   },
   "repository": {
     "type": "git",
@@ -67,5 +68,8 @@
     "react-dom": "^16.4.0",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.22.0"
   }
 }
