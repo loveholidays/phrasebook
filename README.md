@@ -6,7 +6,7 @@ loveholidays made Phrasebook for our [website](https://www.loveholidays.com/).
 
 It supports tree-shaking, and generates less JavaScript than i18next.
 
-Phrasebook supports tree shaking to help reduce the client side bundle. On our site this helped us save 12kbs compared to using i18next.
+Phrasebook supports tree shaking to help reduce the client side bundle. On our site this saved us 12kB compared to using i18next.
 
 ## Usage
 
