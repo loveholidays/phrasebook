@@ -17,6 +17,6 @@ npm i
 
 Useful commands:
 
-* `npm run build` - Builds the package for testing/publishing
-* `npm run lint` - Runs eslint on the package
-* `npm run test` - Runs our jest tests for the package
+- `npm run build` - Builds the package for testing/publishing
+- `npm run lint` - Runs eslint on the package
+- `npm run test` - Runs our jest tests for the package
