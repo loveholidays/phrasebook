@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.LOVEHOLIDAYS_BUILD_PAT }}
-      NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Checkout [main]
         uses: actions/checkout@v2
