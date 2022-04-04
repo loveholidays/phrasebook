@@ -20,3 +20,9 @@ Useful commands:
 - `npm run build` - Builds the package for testing/publishing
 - `npm run lint` - Runs eslint on the package
 - `npm run test` - Runs our jest tests for the package
+
+## Publishing & Versioning
+
+We use changesets to manage our versioning and to handle when a new version is published. For more details please read [this guide](./.changeset/README.md)
+
+New versions will be published on merge to main if a changeset was supplied as part of a pull request.
