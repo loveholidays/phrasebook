@@ -1,9 +1,13 @@
 # Phrasebook
 
-description tbd
+A lightweight drop-in for i18next users.
 
-how to use tbd
+loveholidays made Phrasebook for our [website](https://www.loveholidays.com/).
 
-hello worlds
+It supports tree-shaking, and generates less JavaScript than i18next.
 
-https://www.i18next.com/misc/json-format#i18next-json-v3.
+Phrasebook supports tree shaking to help reduce the client side bundle.
+
+## Contributing
+
+Please see our [guidelines](./CONTRIBUTING.md)
