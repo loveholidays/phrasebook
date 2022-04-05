@@ -1,6 +1,6 @@
 {
   "name": "@loveholidays/phrasebook",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A lightweight drop-in for i18next users",
   "sideEffects": false,
   "module": "lib/index.js",

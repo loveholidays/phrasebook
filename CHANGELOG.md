@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 0.0.4
+
+### Patch Changes
+
+- 0e1a9cc: Exports translation context value interace
+
 ## 0.0.3
 
 ### Patch Changes
