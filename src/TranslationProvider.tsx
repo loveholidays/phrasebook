@@ -3,7 +3,7 @@ import React, { createContext, useContext } from 'react';
 import { processTranslation } from './processTranslation';
 import { Locale, TFunction, TranslationData } from './types';
 
-interface TranslationContextValue {
+export interface TranslationContextValue {
   locale: Locale;
   t: TFunction;
 }
