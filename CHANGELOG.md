@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.0.1
+
+### Patch Changes
+
+- d8a6b82: Make public
+
 ## 1.0.0
 
 ### Major Changes
