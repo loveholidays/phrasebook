@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.0.0
+
+### Major Changes
+
+- 4107522: V1 release
+
 ## 0.0.4
 
 ### Patch Changes
