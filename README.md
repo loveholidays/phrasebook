@@ -36,12 +36,14 @@ Use the `TranslationProvider` to create the localisation context:
 ```tsx
 import { TranslationProvider } from '@loveholidays/phrasebook';
 
-<TranslationProvider
-  locale="en-gb"
-  translations={translations}
->
-  // ...
-</TranslationProvider>
+const App = () => (
+  <TranslationProvider
+    locale="en-gb"
+    translations={translations}
+  >
+    // ...
+  </TranslationProvider>
+);
 ```
 
 The `locale` string is used for locale specific number formatting.
@@ -75,11 +77,11 @@ const MyComponent = () => (
     <Translation
       translationKey="myKey" // "Read all the {count} reviews <1>here</1>, served by: <2>"
       params={{
-        count: 1234
+        count: 1234,
       }}
       components={[
-        (text) => <a href="/#">{text}</a>,
-        <img src="logo.svg" />
+        (text) => <a href="/#">{text}</a>, // text between <1> and </1> is passed in as a param
+        <img src="logo.svg" />,
       ]}
     />
   </p>
@@ -91,9 +93,9 @@ const MyComponent = () => (
 ## Differences to i18next
 
 The goal is to provide a lightweight alternative for the most common used features of `react-i18next`, although phrasebook won't ever be 100% compatible with that.
+
 - There is no support for [translation backends](https://www.i18next.com/how-to/add-or-load-translations#combined-with-a-backend-plugin), the translation object must be loaded and passed in to the `TranslationProvider`.
-- The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format
-), the currently supported features are: nested translations, `_plural` suffix, [contexts](https://www.i18next.com/translation-function/context#basic).
+- The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format), the currently supported features are: nested translations, `_plural` suffix, [contexts](https://www.i18next.com/translation-function/context#basic).
 
 ## i18n ally extension support for VS Code
 
