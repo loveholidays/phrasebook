@@ -1,19 +1,17 @@
 # Phrasebook
 
-A lightweight drop-in for `react-i18next` users looking to translate their projects. Currently in production on www.loveholidays.com.
+A lightweight translation library for React/Preact projects with a similar interface to `react-i18next`. Currently in production on www.loveholidays.com.
 
 ## Why phrasebook?
 
 - Tree-shakeable
-- Like for like interface with `react-i18next`
-- Native ESM module
+- Similar interface to `react-i18next`
+- Native ESM module with TypeScript type definitions
 - Small bundle size (<1kb)
 
-We leverage `TFunction` types in our site which are not exported properly from `i18next` without including the entire bundle. With this package you have all the types you need alongside a fully working set of functions that translate i18next files.
+This package exports native [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and does not provide a CommonJS export.
 
-This package uses native [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and does not provide a CommonJS export.
-
-### Bundle size comparisons
+## Bundle size comparisons
 
 | Package                  | Bundle size                                                             | Difference                      |
 | ------------------------ | ----------------------------------------------------------------------- | ------------------------------- |
@@ -23,27 +21,99 @@ This package uses native [ESM](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ## Installation
 
-Currently available on [NPM](https://www.npmjs.com/package/@loveholidays/phrasebook)
+Currently available on [NPM](https://www.npmjs.com/package/@loveholidays/phrasebook):
 
 ```
-$ npm i @loveholidays/phrasebook --save
+$ npm i -S @loveholidays/phrasebook
+- or -
+$ yarn add @loveholidays/phrasebook
 ```
 
-### Usage
+## Usage
 
-As this is a drop-in replacement usage is the same as i18next. For example if you are currently using react-i18next you can replace you imports like so:
+Use the `TranslationProvider` to create the localisation context:
 
+```tsx
+import { TranslationProvider } from '@loveholidays/phrasebook';
+
+const App = () => (
+  <TranslationProvider
+    locale="en-gb"
+    translations={translations}
+  >
+    // ...
+  </TranslationProvider>
+);
 ```
-import { useTranslation } from 'react-i18next';
-```
 
-becomes
+The `locale` string is used for locale specific number formatting.
+The `translations` object follows a format similar to the i18next JSON format [with some exceptions](#differences-to-i18next).
 
-```
+Use the `useTranslation` hook to access the translation function:
+
+```tsx
 import { useTranslation } from '@loveholidays/phrasebook';
 
+const MyComponent = () => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <h1>{t('helloWorld')}</h1>
+      <h2>{t('welcomeBack', { name: 'David' })}</h2>
+      <p>{t('youHaveXNewMessages', { count: 14 })}</p>
+    </>
+  );
+};
+```
+
+Use the `Translation` component to embed React components into the translations (similar to the [Trans component](https://react.i18next.com/latest/trans-component) of `react-i18next`):
+
+```tsx
+import { Translation } from '@loveholidays/phrasebook';
+
+const MyComponent = () => (
+  <p>
+    <Translation
+      translationKey="myKey" // "Read all the {count} reviews <1>here</1>, served by: <2>"
+      params={{
+        count: 1234,
+      }}
+      components={[
+        (text) => <a href="/#">{text}</a>, // text between <1> and </1> is passed in as a param
+        <img src="logo.svg" />,
+      ]}
+    />
+  </p>
+);
+
+// result: <p>Read all the 1234 reviews <a href="/#">here</a>, served by: <img src="logo.svg" /></p>
+```
+
+## Differences to i18next
+
+The goal is to provide a lightweight alternative for the most common used features of `react-i18next`, although phrasebook won't ever be 100% compatible with that.
+
+- There is no support for [translation backends](https://www.i18next.com/how-to/add-or-load-translations#combined-with-a-backend-plugin), the translation object must be loaded and passed in to the `TranslationProvider`.
+- The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format), the currently supported features are: nested translations, `_plural` suffix, [contexts](https://www.i18next.com/translation-function/context#basic).
+
+## i18n ally extension support for VS Code
+
+We highly recommend to use the [i18n ally](https://github.com/lokalise/i18n-ally) extension for VS Code users. To make it work with phrasebook you need to add this file to your project:
+
+```yaml
+# .vscode/i18n-ally-custom-framework.yml
+
+languageIds:
+  - javascript
+  - typescript
+  - javascriptreact
+  - typescriptreact
+usageMatchRegex:
+  - "[^\\w\\d]t\\(['\"`]({key})['\"`]"
+monopoly: false
 ```
 
 ## Contributing
 
-Please see our [guidelines](./CONTRIBUTING.md)
+Please see our [contributing guidelines](./CONTRIBUTING.md)
