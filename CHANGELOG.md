@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.0.2
+
+### Patch Changes
+
+- 8fd7dd9: Update readme with examples
+
 ## 1.0.1
 
 ### Patch Changes
