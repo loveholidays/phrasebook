@@ -1,20 +1,8 @@
 import { processTranslation } from './processTranslation';
+import namespaces from './testing/testNamespaces.json';
 
 describe('processTranslation', () => {
   const locale = 'en-GB';
-  const translations = {
-    search: {
-      label: 'Search',
-    },
-    reviews: '{{count}} review',
-    reviews_plural: '{{count}} reviews',
-    boardBasis: {
-      code: 'Board Basis',
-      code_AI: 'All Inclusive',
-      code_BB: 'Breakfast Included',
-    },
-    empty: '',
-  };
 
   it.each([
     [ 'search.label', {}, 'Search' ],
@@ -26,11 +14,12 @@ describe('processTranslation', () => {
     [ 'boardBasis.code', {}, 'Board Basis' ],
     [ 'boardBasis.code', { context: 'AI' }, 'All Inclusive' ],
     [ 'empty', {}, '' ],
+    [ 'title', { ns: 'ns1' }, 'title from namespace 1' ],
   ])('%s %p => %s', (key, args, expected) => {
     expect(
       processTranslation({
         locale,
-        translations,
+        namespaces,
         key,
         args,
       }),
@@ -41,7 +30,7 @@ describe('processTranslation', () => {
     expect(
       () => processTranslation({
         locale,
-        translations,
+        namespaces,
         key: 'missing.translation.key',
       }),
     ).toThrow('Missing translation: "missing.translation.key"');
@@ -49,7 +38,7 @@ describe('processTranslation', () => {
     expect(
       () => processTranslation({
         locale,
-        translations,
+        namespaces,
         key: 'boardBasis',
         args: { context: 'foo' },
       }),

@@ -11,14 +11,11 @@ esbuild
     outdir: 'lib',
     bundle: true,
     sourcemap: true,
-    minify: false,
+    minify: true,
     splitting: true,
     format: 'esm',
     target: ['es2019'],
-    external: [
-      'react',
-      'react-dom',
-    ],
+    external: ['react', 'react-dom'],
   })
   .catch((e) => {
     console.log(e);

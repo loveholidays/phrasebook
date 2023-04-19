@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TranslationProvider translates using useTranslation hook 1`] = `
+exports[`TranslationProvider exposes the translation function via useTranslation hook 1`] = `
 <DocumentFragment>
   <span>
     Search
@@ -16,6 +16,23 @@ exports[`TranslationProvider translates using useTranslation hook 1`] = `
   </span>
   <span>
     All Inclusive
+  </span>
+  <span>
+    title from namespace 1
+  </span>
+  <span>
+    title from namespace 2
+  </span>
+</DocumentFragment>
+`;
+
+exports[`TranslationProvider merges namespaces when nesting providers 1`] = `
+<DocumentFragment>
+  <span>
+    title from namespace 1
+  </span>
+  <span>
+    title from namespace 2
   </span>
 </DocumentFragment>
 `;

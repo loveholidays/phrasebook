@@ -3,6 +3,7 @@
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "strict": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
