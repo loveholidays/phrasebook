@@ -1,6 +1,7 @@
 {
   "ns1": {
-    "title": "title from namespace 1"
+    "title": "title from namespace 1",
+    "textWithPlaceholders": "a {{ first }} b <1> c"
   },
   "ns2": {
     "title": "title from namespace 2"

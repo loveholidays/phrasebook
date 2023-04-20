@@ -135,6 +135,17 @@ const homepageTitle = t('title');
 const checkoutTitle = t('title', { namespace: 'checkout' });
 ```
 
+The `Translation` component takes an optional `namespace` prop to achieve the same:
+
+```tsx
+  <Translation
+    translationKey="myKey"
+    namespace="myNamespace"
+    params={ ... }
+    components={ ... }
+  />
+```
+
 ## i18n ally extension support for VS Code
 
 We highly recommend to use the [i18n ally](https://github.com/lokalise/i18n-ally) extension for VS Code users. To make it work with phrasebook you need to add this file to your project:

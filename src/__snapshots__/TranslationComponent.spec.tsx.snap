@@ -14,6 +14,16 @@ exports[`Translation component translates the default component 1`] = `
 </DocumentFragment>
 `;
 
+exports[`Translation component translates using the provided namespace  1`] = `
+<DocumentFragment>
+  a _ b 
+  <strong>
+    @
+  </strong>
+   c
+</DocumentFragment>
+`;
+
 exports[`Translation component translates when the components have children 1`] = `
 <DocumentFragment>
   this makes it possible to 

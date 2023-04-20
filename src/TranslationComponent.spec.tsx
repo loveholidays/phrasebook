@@ -33,6 +33,28 @@ describe('Translation component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('translates using the provided namespace ', () => {
+    const { asFragment } = render(
+      <TranslationProvider
+        locale={locale}
+        namespaces={namespaces}
+      >
+        <Translation
+          translationKey="textWithPlaceholders"
+          namespace="ns1"
+          params={{
+            first: '_',
+          }}
+          components={[
+            <strong key={1}>@</strong>,
+          ]}
+        />
+      </TranslationProvider>,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('translates with one param and two components', () => {
     const { asFragment } = render(
       <TranslationProvider
