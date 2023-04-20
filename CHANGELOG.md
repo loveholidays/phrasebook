@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.1.0
+
+### Minor Changes
+
+- d54c25b: Adding support for namespaces
+
 ## 1.0.2
 
 ### Patch Changes
