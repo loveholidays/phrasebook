@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { DEFAULT_NAMESPACE } from './constants';
 
 import { processTranslation } from './processTranslation';
@@ -39,7 +39,7 @@ const mergeNamespaces = (
   }),
 });
 
-interface UseTranslationReturnValue {
+export interface UseTranslationReturnValue {
   t: TFunction;
 }
 
@@ -59,15 +59,16 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
   children,
 }) => {
   const { namespaces: parentNamespaces } = useContext(TranslationContext);
-  const [ mergedNamespaces ] = useState(
+  const mergedNamespaces = useMemo(
     () => mergeNamespaces(parentNamespaces, namespaces, translations),
+    [ parentNamespaces, namespaces, translations ],
   );
 
   return (
     <TranslationContext.Provider
       value={{
         locale,
-        namespaces: mergeNamespaces(parentNamespaces, namespaces, translations),
+        namespaces: mergedNamespaces,
         t: (key, args) => processTranslation({
           locale,
           namespaces: mergedNamespaces,
