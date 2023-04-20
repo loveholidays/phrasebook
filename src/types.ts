@@ -2,6 +2,8 @@ export interface TranslationData {
   [key: string]: string | TranslationData;
 }
 
+export type Namespaces = Record<string, TranslationData>;
+
 export type TranslationArgumentValue = string | number | undefined;
 
 export type TranslationArguments = {

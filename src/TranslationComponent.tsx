@@ -38,16 +38,18 @@ const resolveParts = (parts: string[], components: TranslationComponent[]) => pa
 
 interface TranslationProps {
   translationKey: string;
+  namespace?: string;
   params?: Record<string, string | number | undefined>;
   components?: TranslationComponent[];
 }
 
 export const Translation: React.FC<TranslationProps> = ({
   translationKey,
+  namespace,
   params = {},
   components = [],
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(namespace);
   const translation = t(translationKey, params);
   const parts = translation.split(regExp.extractComponents);
   const resolvedParts = resolveParts(parts, components);

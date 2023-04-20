@@ -1,6 +1,8 @@
 # Phrasebook
 
-A lightweight translation library for React/Preact projects with a similar interface to `react-i18next`. Currently in production on www.loveholidays.com.
+A lightweight translation library for React/Preact projects with a similar interface to `react-i18next`.
+
+Made with ❤️ by [loveholidays.com](https://www.loveholidays.com)
 
 ## Why phrasebook?
 
@@ -13,11 +15,11 @@ This package exports native [ESM](https://developer.mozilla.org/en-US/docs/Web/J
 
 ## Bundle size comparisons
 
-| Package                  | Bundle size                                                             | Difference                      |
-| ------------------------ | ----------------------------------------------------------------------- | ------------------------------- |
-| react-i18next            | [6.5kb](https://bundlephobia.com/package/react-i18next@11.16.2)         |                                 |
-| @loveholidays/phrasebook | [883b](https://bundlephobia.com/package/@loveholidays/phrasebook@0.0.4) | 736% smaller than react-i18next |
-| @lingui/react            | [2.5kb](https://bundlephobia.com/package/@lingui/react@3.13.2)          | 260% smaller than react-i18next |
+| Package                  | Bundle size (gzip)                                                | Difference |
+| ------------------------ | ----------------------------------------------------------------- | ---------- |
+| @loveholidays/phrasebook | [956b](https://bundlephobia.com/package/@loveholidays/phrasebook) | baseline   |
+| @lingui/react            | [1.6kb](https://bundlephobia.com/package/@lingui/react@3.17.2)    | + 68%      |
+| react-i18next            | [7.1kb](https://bundlephobia.com/package/react-i18next@12.2.0)    | + 650%     |
 
 ## Installation
 
@@ -96,6 +98,53 @@ The goal is to provide a lightweight alternative for the most common used featur
 
 - There is no support for [translation backends](https://www.i18next.com/how-to/add-or-load-translations#combined-with-a-backend-plugin), the translation object must be loaded and passed in to the `TranslationProvider`.
 - The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format), the currently supported features are: nested translations, `_plural` suffix, [contexts](https://www.i18next.com/translation-function/context#basic).
+
+## Namespaces
+
+Namespaced translations can be used with `<TranslationProvider />` by passing an object into the `namespaces` prop - where the keys are the names of the namespaces and the values are the translations for the given namespace:
+
+```tsx
+<TranslationProvider
+  locale={locale}
+  namespaces={{
+    homepage: {
+      title: 'Homepage',
+    },
+    checkout: {
+      title: 'Checkout',
+    },
+  }}
+>
+```
+
+The `ns` option controls the namespace when using the `t` function:
+
+```tsx
+const { t } = useTranslation();
+
+const homepageTitle = t('title', { ns: 'homepage' });
+const checkoutTitle = t('title', { ns: 'checkout' });
+```
+
+To avoid repeating the `ns` option when using `t`, the default namespace can be changed when using the `useTranslation` hook:
+
+```tsx
+const { t } = useTranslation('homepage');
+
+const homepageTitle = t('title');
+const checkoutTitle = t('title', { namespace: 'checkout' });
+```
+
+The `Translation` component takes an optional `namespace` prop to achieve the same:
+
+```tsx
+  <Translation
+    translationKey="myKey"
+    namespace="myNamespace"
+    params={ ... }
+    components={ ... }
+  />
+```
 
 ## i18n ally extension support for VS Code
 

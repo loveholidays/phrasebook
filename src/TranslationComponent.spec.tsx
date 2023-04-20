@@ -5,16 +5,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Translation } from './TranslationComponent';
 import { TranslationProvider } from './TranslationProvider';
+import namespaces from './testing/testNamespaces.json';
 
 describe('Translation component', () => {
   const locale = 'en-GB';
-  const translations = require('./testing/testTranslations.json');
 
   it('translates the default component', () => {
     const { asFragment } = render(
       <TranslationProvider
         locale={locale}
-        translations={translations}
+        namespaces={namespaces}
       >
         <Translation
           translationKey="translationComponent"
@@ -33,11 +33,33 @@ describe('Translation component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('translates using the provided namespace ', () => {
+    const { asFragment } = render(
+      <TranslationProvider
+        locale={locale}
+        namespaces={namespaces}
+      >
+        <Translation
+          translationKey="textWithPlaceholders"
+          namespace="ns1"
+          params={{
+            first: '_',
+          }}
+          components={[
+            <strong key={1}>@</strong>,
+          ]}
+        />
+      </TranslationProvider>,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('translates with one param and two components', () => {
     const { asFragment } = render(
       <TranslationProvider
         locale={locale}
-        translations={translations}
+        namespaces={namespaces}
       >
         <Translation
           translationKey="oneParamTwoComponents"
@@ -59,7 +81,7 @@ describe('Translation component', () => {
     const { asFragment } = render(
       <TranslationProvider
         locale={locale}
-        translations={translations}
+        namespaces={namespaces}
       >
         <Translation
           translationKey="twoParamsOneComponent"
@@ -81,7 +103,7 @@ describe('Translation component', () => {
     const { asFragment } = render(
       <TranslationProvider
         locale={locale}
-        translations={translations}
+        namespaces={namespaces}
       >
         <Translation
           translationKey="componentWithChildren"

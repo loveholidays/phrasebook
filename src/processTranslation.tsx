@@ -1,5 +1,6 @@
+import { DEFAULT_NAMESPACE } from './constants';
 import {
-  Locale, TranslationArguments, TranslationArgumentValue, TranslationData,
+  Locale, Namespaces, TranslationArguments, TranslationArgumentValue, TranslationData,
 } from './types';
 
 const formatArgument = (
@@ -19,22 +20,24 @@ const formatArgument = (
 
 interface ProcessTranslationParams {
   locale: Locale;
-  translations: TranslationData;
+  namespaces: Namespaces;
   key: string;
   args?: TranslationArguments;
 }
 
 export const processTranslation = ({
   locale,
-  translations,
+  namespaces,
   key,
   args = {},
 }: ProcessTranslationParams) => {
+  const namespaceName = args.ns ?? DEFAULT_NAMESPACE;
+
   const parts = key.split('.');
   const lastPart = parts[parts.length - 1];
   const root = parts.slice(0, -1).reduce(
     (root, part) => root?.[part] as TranslationData,
-    translations,
+    namespaces[namespaceName],
   );
 
   if (typeof root !== 'object') {
