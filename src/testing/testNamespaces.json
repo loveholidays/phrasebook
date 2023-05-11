@@ -1,7 +1,8 @@
 {
   "ns1": {
     "title": "title from namespace 1",
-    "textWithPlaceholders": "a {{ first }} b <1> c"
+    "textWithPlaceholders": "a {{ first }} b <1> c",
+    "stringWithParam": "text with parameter: {{wrongParam}}"
   },
   "ns2": {
     "title": "title from namespace 2"
@@ -20,6 +21,7 @@
     "translationComponent": "param first {{ first }} param second {{ second }} component one <1> component 2 <2> something at the end",
     "oneParamTwoComponents": "param first {{ first }} component one <1> component 2 <2> something at the end",
     "twoParamsOneComponent": "param first {{ first }} param second {{ second }} component one <1> something at the end",
-    "componentWithChildren": "this makes it possible to <1>make some parts</1> of the <2>text</2> appear as links"
+    "componentWithChildren": "this makes it possible to <1>make some parts</1> of the <2>text</2> appear as links",
+    "stringWithParam": "text with parameter: {{param}}"
   }
 }

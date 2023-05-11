@@ -16,6 +16,7 @@ describe('processTranslation', () => {
       [ 'boardBasis.code', { context: 'AI' }, 'All Inclusive' ],
       [ 'empty', {}, '' ],
       [ 'title', { ns: 'ns1' }, 'title from namespace 1' ],
+      [ 'stringWithParam', { param: 'foo' }, 'text with parameter: foo' ],
     ])('%s %p => %s', (key, args, expected) => {
       expect(
         processTranslation({
@@ -32,7 +33,7 @@ describe('processTranslation', () => {
     it.each([
       [ 'missing.translation.key', {}, 'Missing translation: "missing.translation.key"' ],
       [ 'boardBasis', { context: 'foo' }, 'Missing translation: "boardBasis" with suffix: "foo"' ],
-      [ 'reviews', { missingArgument: 'foo' }, 'Argument: "missingArgument" with value: "foo" is not valid' ],
+      [ 'stringWithParam', { ns: 'ns1', param: 'foo' }, 'Argument: "param" with value: "foo" is not valid' ],
     ])('Should throw exception %s %p => %s', (key, args, expected) => {
       expect(
         () => processTranslation({
