@@ -62,10 +62,18 @@ export const processTranslation = ({
 
   // Replace placeholders like `{{count}}` with values from `args`
   const processed = Object.entries(args).reduce(
-    (v, [ name, value ]) => v.replace(
-      new RegExp(`{{\\s*${name}\\s*}}`, 'g'),
-      String(formatArgument(locale, value)),
-    ),
+    (v, [ name, value ]) => {
+      const localizedValue = String(formatArgument(locale, value))
+
+      if (!localizedValue) {
+        throw new Error(`Missing translation for argument: "${name}" with value: "${value}"`);
+      }
+
+      return v.replace(
+        new RegExp(`{{\\s*${name}\\s*}}`, 'g'),
+        localizedValue,
+      )
+    },
     translation as string,
   );
 
