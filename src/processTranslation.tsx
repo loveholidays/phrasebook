@@ -60,22 +60,25 @@ export const processTranslation = ({
     throw new Error(`Missing translation: "${key}" with suffix: "${suffix}"`);
   }
 
-  // Replace placeholders like `{{count}}` with values from `args`
-  const processed = Object.entries(args).reduce(
-    (v, [ name, value ]) => {
-      const localizedValue = String(formatArgument(locale, value))
+  const {
+    context,
+    ns,
+    ...replaceableArgs
+  } = args;
 
-      if (!localizedValue) {
-        throw new Error(`Missing translation for argument: "${name}" with value: "${value}"`);
+  // Replace placeholders like `{{count}}` with values from `args`
+  return Object.entries(replaceableArgs).reduce(
+    (v, [ name, value ]) => {
+      const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
+
+      if (!regexp.test(v)) {
+        throw new Error(`Argument: "${name}" with value: "${value}" is not valid`);
       }
 
-      return v.replace(
-        new RegExp(`{{\\s*${name}\\s*}}`, 'g'),
-        localizedValue,
-      )
+      const localizedValue = String(formatArgument(locale, value));
+
+      return v.replace(regexp, localizedValue);
     },
     translation as string,
   );
-
-  return processed;
 };
