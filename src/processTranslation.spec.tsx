@@ -33,7 +33,6 @@ describe('processTranslation', () => {
     it.each([
       [ 'missing.translation.key', {}, 'Missing translation: "missing.translation.key"' ],
       [ 'boardBasis', { context: 'foo' }, 'Missing translation: "boardBasis" with suffix: "foo"' ],
-      [ 'stringWithParam', { ns: 'ns1', param: 'foo' }, 'Argument: "param" with value: "foo" is not valid' ],
     ])('Should throw exception %s %p => %s', (key, args, expected) => {
       expect(
         () => processTranslation({
@@ -43,6 +42,23 @@ describe('processTranslation', () => {
           args,
         }),
       ).toThrow(expected);
+    });
+  });
+
+  describe('when calling with wrong param', () => {
+    beforeEach(() => {
+      console.error = jest.fn();
+    });
+
+    it('Should log the error', () => {
+      expect(processTranslation({
+        locale,
+        namespaces,
+        key: 'stringWithParam',
+        args: { ns: 'ns1', param: 'foo' },
+      })).toBe('text with parameter: {{wrongParam}}');
+
+      expect(console.error).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid');
     });
   });
 });

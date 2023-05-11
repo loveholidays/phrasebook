@@ -72,7 +72,7 @@ export const processTranslation = ({
       const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
 
       if (!regexp.test(v)) {
-        throw new Error(`Argument: "${name}" with value: "${value}" is not valid`);
+        console.error(`Argument: "${name}" with value: "${value}" is not valid`);
       }
 
       const localizedValue = String(formatArgument(locale, value));
