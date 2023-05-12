@@ -22,6 +22,7 @@ interface ProcessTranslationParams {
   locale: Locale;
   namespaces: Namespaces;
   key: string;
+  onError?: (error: Error | string) => void;
   args?: TranslationArguments;
 }
 
@@ -29,6 +30,7 @@ export const processTranslation = ({
   locale,
   namespaces,
   key,
+  onError,
   args = {},
 }: ProcessTranslationParams) => {
   const namespaceName = args.ns ?? DEFAULT_NAMESPACE;
@@ -73,6 +75,7 @@ export const processTranslation = ({
 
       if (!regexp.test(v)) {
         console.error(`Argument: "${name}" with value: "${value}" is not valid`);
+        onError?.(`Argument: "${name}" with value: "${value}" is not valid`);
       }
 
       const localizedValue = String(formatArgument(locale, value));

@@ -22,6 +22,7 @@ interface TranslationProviderProps {
   locale: Locale;
   namespaces?: Namespaces;
   translations?: TranslationData;
+  onError?: (error: Error | string) => void;
 }
 
 // @TODO:
@@ -56,6 +57,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
   locale,
   namespaces,
   translations,
+  onError,
   children,
 }) => {
   const { namespaces: parentNamespaces } = useContext(TranslationContext);
@@ -74,6 +76,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
           namespaces: mergedNamespaces,
           key,
           args,
+          onError,
         }),
       }}
     >
