@@ -46,6 +46,8 @@ describe('processTranslation', () => {
   });
 
   describe('when calling with wrong param', () => {
+    const onError = jest.fn();
+
     beforeEach(() => {
       console.error = jest.fn();
     });
@@ -56,9 +58,11 @@ describe('processTranslation', () => {
         namespaces,
         key: 'stringWithParam',
         args: { ns: 'ns1', param: 'foo' },
+        onError,
       })).toBe('text with parameter: {{wrongParam}}');
 
       expect(console.error).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid');
+      expect(onError).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid');
     });
   });
 });
