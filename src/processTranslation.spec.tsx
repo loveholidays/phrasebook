@@ -48,10 +48,6 @@ describe('processTranslation', () => {
   describe('when calling with wrong param', () => {
     const onError = jest.fn();
 
-    beforeEach(() => {
-      console.error = jest.fn();
-    });
-
     it('Should log the error', () => {
       expect(processTranslation({
         locale,
@@ -61,7 +57,6 @@ describe('processTranslation', () => {
         onError,
       })).toBe('text with parameter: {{wrongParam}}');
 
-      expect(console.error).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid');
       expect(onError).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid');
     });
   });
