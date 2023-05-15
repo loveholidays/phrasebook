@@ -2,7 +2,6 @@ local backstage = import 'backstage.libsonnet';
 local Define = backstage.Define;
 local Component = backstage.Component;
 local Link = backstage.Link;
-local Api = backstage.Api;
 
 Define([
   Component(
