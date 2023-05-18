@@ -22,7 +22,7 @@ interface TranslationProviderProps {
   locale: Locale;
   namespaces?: Namespaces;
   translations?: TranslationData;
-  onError?: (error: Error | string) => void;
+  onError?: <T extends any>(error: T | Error | string, data: any) => void;
 }
 
 // @TODO:
