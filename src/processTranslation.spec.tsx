@@ -59,7 +59,7 @@ describe('processTranslation', () => {
 
       expect(onError).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid', {
         key: 'stringWithParam',
-        argName: 'param',
+        argumentName: 'param',
         value: 'foo',
       });
     });

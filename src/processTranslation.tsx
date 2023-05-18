@@ -22,7 +22,14 @@ interface ProcessTranslationParams {
   locale: Locale;
   namespaces: Namespaces;
   key: string;
-  onError?: <T extends any>(error: T | Error | string, data: any) => void;
+  onError?: (
+    error: Error | string,
+    data: {
+      key: string;
+      argumentName: string;
+      value: TranslationArgumentValue;
+    }
+  ) => void;
   args?: TranslationArguments;
 }
 
@@ -76,7 +83,7 @@ export const processTranslation = ({
       if (onError && !regexp.test(v)) {
         onError(
           `Argument: "${name}" with value: "${value}" is not valid`,
-          { key, argName: name, value },
+          { key, argumentName: name, value },
         );
       }
 
