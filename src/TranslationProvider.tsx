@@ -23,7 +23,7 @@ interface TranslationProviderProps {
   namespaces?: Namespaces;
   translations?: TranslationData;
   onError?: (
-    error: Error | string,
+    error: string,
     data: {
       key: string;
       argumentName: string;

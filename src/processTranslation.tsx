@@ -23,7 +23,7 @@ interface ProcessTranslationParams {
   namespaces: Namespaces;
   key: string;
   onError?: (
-    error: Error | string,
+    error: string,
     data: {
       key: string;
       argumentName: string;
