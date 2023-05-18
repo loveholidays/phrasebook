@@ -3,7 +3,7 @@ import { DEFAULT_NAMESPACE } from './constants';
 
 import { processTranslation } from './processTranslation';
 import type {
-  Namespaces, Locale, TFunction, TranslationData,
+  Namespaces, Locale, TFunction, TranslationData, TranslationArgumentValue,
 } from './types';
 
 export interface TranslationContextValue {
@@ -22,7 +22,14 @@ interface TranslationProviderProps {
   locale: Locale;
   namespaces?: Namespaces;
   translations?: TranslationData;
-  onError?: <T extends any>(error: T | Error | string, data: any) => void;
+  onError?: (
+    error: Error | string,
+    data: {
+      key: string;
+      argumentName: string;
+      value: TranslationArgumentValue;
+    }
+  ) => void;
 }
 
 // @TODO:
