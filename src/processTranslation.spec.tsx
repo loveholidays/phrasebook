@@ -57,7 +57,7 @@ describe('processTranslation', () => {
         onError,
       })).toBe('text with parameter: {{wrongParam}}');
 
-      expect(onError).toHaveBeenCalledWith('Argument: "param" with value: "foo" is not valid', {
+      expect(onError).toHaveBeenCalledWith('REPLACE_ARGUMENT_NOT_FOUND', {
         key: 'stringWithParam',
         argumentName: 'param',
         value: 'foo',

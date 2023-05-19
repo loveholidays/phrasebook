@@ -2,6 +2,7 @@ import { DEFAULT_NAMESPACE } from './constants';
 import {
   Locale, Namespaces, TranslationArguments, TranslationArgumentValue, TranslationData,
 } from './types';
+import type { ErrorType, ReplaceArgumentErrorParams } from './TranslationProvider';
 
 const formatArgument = (
   locale: Locale,
@@ -23,12 +24,8 @@ interface ProcessTranslationParams {
   namespaces: Namespaces;
   key: string;
   onError?: (
-    error: string,
-    data: {
-      key: string;
-      argumentName: string;
-      value: TranslationArgumentValue;
-    }
+    errorType: ErrorType,
+    params: ReplaceArgumentErrorParams,
   ) => void;
   args?: TranslationArguments;
 }
@@ -82,7 +79,7 @@ export const processTranslation = ({
 
       if (onError && !regexp.test(v)) {
         onError(
-          `Argument: "${name}" with value: "${value}" is not valid`,
+          'REPLACE_ARGUMENT_NOT_FOUND',
           { key, argumentName: name, value },
         );
       }

@@ -18,17 +18,21 @@ export const TranslationContext = createContext<TranslationContextValue>({
   t: () => '',
 });
 
+export type ErrorType = 'REPLACE_ARGUMENT_NOT_FOUND';
+
+export type ReplaceArgumentErrorParams = {
+  key: string;
+  argumentName: string;
+  value: TranslationArgumentValue;
+};
+
 interface TranslationProviderProps {
   locale: Locale;
   namespaces?: Namespaces;
   translations?: TranslationData;
   onError?: (
-    error: string,
-    data: {
-      key: string;
-      argumentName: string;
-      value: TranslationArgumentValue;
-    }
+    errorType: ErrorType,
+    params: ReplaceArgumentErrorParams,
   ) => void;
 }
 
