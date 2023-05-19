@@ -42,6 +42,13 @@ const App = () => (
   <TranslationProvider
     locale="en-gb"
     translations={translations}
+    onError={(errorMessage, data: {
+      key,
+      argumentName,
+      value
+    }) => {
+      // this callback could be used to handle or to track the error
+    }}
   >
     // ...
   </TranslationProvider>
