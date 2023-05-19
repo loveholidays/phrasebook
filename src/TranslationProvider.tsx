@@ -20,7 +20,7 @@ export const TranslationContext = createContext<TranslationContextValue>({
 
 export type ErrorType = 'REPLACE_ARGUMENT_NOT_FOUND';
 
-export type ReplaceArgumentErrorParams = {
+export interface ReplaceArgumentErrorParams {
   key: string;
   argumentName: string;
   value: TranslationArgumentValue;
