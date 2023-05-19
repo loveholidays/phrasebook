@@ -24,7 +24,7 @@ export interface ReplaceArgumentErrorParams {
   key: string;
   argumentName: string;
   value: TranslationArgumentValue;
-};
+}
 
 interface TranslationProviderProps {
   locale: Locale;
