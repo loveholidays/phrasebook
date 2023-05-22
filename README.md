@@ -44,7 +44,6 @@ const App = () => (
     translations={translations}
     onError={(errorType, data) => {
       const { key, argumentName, value } = data;
-      // this callback could be used to track the error
     }}
   >
     // ...

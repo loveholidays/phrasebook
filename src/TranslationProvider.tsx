@@ -64,6 +64,15 @@ export const useTranslation = (namespace?: string) => ({
     : useContext(TranslationContext).t,
 }) as UseTranslationReturnValue;
 
+/**
+ * TranslationProvider
+ * Provider used to create the localisation context.
+ * @param {object} props
+ * @param {string} props.locale String is used for locale specific formatting.
+ * @param {object} props.namespaces Namespaced translations where the keys are the names of the namespaces and the values are the translations for the given namespace.
+ * @param {object} props.translations Translation for default locale.
+ * @param {function} props.onError Callback could be used to track the error during translation processing.
+ * */
 export const TranslationProvider: React.FC<TranslationProviderProps> = ({
   locale,
   namespaces,
