@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.2.0
+
+### Minor Changes
+
+- 42cdb72: Adding onError callback for arguments substitution errors
+
 ## 1.1.0
 
 ### Minor Changes
