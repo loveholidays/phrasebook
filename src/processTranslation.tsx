@@ -2,7 +2,7 @@ import { DEFAULT_NAMESPACE } from './constants';
 import {
   Locale, Namespaces, TranslationArguments, TranslationArgumentValue, TranslationData,
 } from './types';
-import type { OnErrorType } from './TranslationProvider';
+import type { OnErrorCallback } from './TranslationProvider';
 
 const formatArgument = (
   locale: Locale,
@@ -23,7 +23,7 @@ interface ProcessTranslationParams {
   locale: Locale;
   namespaces: Namespaces;
   key: string;
-  onError?: OnErrorType;
+  onError?: OnErrorCallback;
   args?: TranslationArguments;
 }
 

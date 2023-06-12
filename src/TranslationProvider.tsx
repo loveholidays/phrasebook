@@ -24,14 +24,14 @@ export interface ReplaceArgumentErrorParams {
   value: TranslationArgumentValue;
 }
 
-export type OnErrorType =
+export type OnErrorCallback =
   & ((errorType: 'REPLACE_ARGUMENT_NOT_FOUND', params: ReplaceArgumentErrorParams) => void);
 
 interface TranslationProviderProps {
   locale: Locale;
   namespaces?: Namespaces;
   translations?: TranslationData;
-  onError?: OnErrorType;
+  onError?: OnErrorCallback;
 }
 
 // @TODO:
