@@ -42,6 +42,9 @@ const App = () => (
   <TranslationProvider
     locale="en-gb"
     translations={translations}
+    onError={(errorType, data) => {
+      const { key, argumentName, value } = data;
+    }}
   >
     // ...
   </TranslationProvider>

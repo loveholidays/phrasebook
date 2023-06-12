@@ -2,6 +2,7 @@ import { DEFAULT_NAMESPACE } from './constants';
 import {
   Locale, Namespaces, TranslationArguments, TranslationArgumentValue, TranslationData,
 } from './types';
+import type { OnErrorCallback } from './TranslationProvider';
 
 const formatArgument = (
   locale: Locale,
@@ -22,6 +23,7 @@ interface ProcessTranslationParams {
   locale: Locale;
   namespaces: Namespaces;
   key: string;
+  onError?: OnErrorCallback;
   args?: TranslationArguments;
 }
 
@@ -29,6 +31,7 @@ export const processTranslation = ({
   locale,
   namespaces,
   key,
+  onError,
   args = {},
 }: ProcessTranslationParams) => {
   const namespaceName = args.ns ?? DEFAULT_NAMESPACE;
@@ -60,14 +63,28 @@ export const processTranslation = ({
     throw new Error(`Missing translation: "${key}" with suffix: "${suffix}"`);
   }
 
+  const {
+    context,
+    ns,
+    ...replaceableArgs
+  } = args;
+
   // Replace placeholders like `{{count}}` with values from `args`
-  const processed = Object.entries(args).reduce(
-    (v, [ name, value ]) => v.replace(
-      new RegExp(`{{\\s*${name}\\s*}}`, 'g'),
-      String(formatArgument(locale, value)),
-    ),
+  return Object.entries(replaceableArgs).reduce(
+    (v, [ name, value ]) => {
+      const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
+
+      if (onError && !regexp.test(v)) {
+        onError(
+          'REPLACE_ARGUMENT_NOT_FOUND',
+          { key, argumentName: name, value },
+        );
+      }
+
+      const localizedValue = String(formatArgument(locale, value));
+
+      return v.replace(regexp, localizedValue);
+    },
     translation as string,
   );
-
-  return processed;
 };
