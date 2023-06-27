@@ -3,6 +3,7 @@ import namespaces from './testing/testNamespaces.json';
 
 describe('processTranslation', () => {
   const locale = 'en-GB';
+  const onError = jest.fn();
 
   describe('Should return expected translated value', () => {
     it.each([
@@ -24,8 +25,10 @@ describe('processTranslation', () => {
           namespaces,
           key,
           args,
+          onError,
         }),
       ).toBe(expected);
+      expect(onError).not.toHaveBeenCalled();
     });
   });
 
@@ -46,16 +49,16 @@ describe('processTranslation', () => {
   });
 
   describe('when calling with wrong param', () => {
-    const onError = jest.fn();
-
     it('Should log the error', () => {
-      expect(processTranslation({
+      const result = processTranslation({
         locale,
         namespaces,
         key: 'stringWithParam',
         args: { ns: 'ns1', param: 'foo' },
         onError,
-      })).toBe('text with parameter: {{wrongParam}}');
+      });
+
+      expect(result).toBe('text with parameter: {{wrongParam}}');
 
       expect(onError).toHaveBeenCalledWith('REPLACE_ARGUMENT_NOT_FOUND', {
         key: 'stringWithParam',

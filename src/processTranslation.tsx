@@ -19,6 +19,8 @@ const formatArgument = (
   return value;
 };
 
+const COUNT = 'count';
+
 interface ProcessTranslationParams {
   locale: Locale;
   namespaces: Namespaces;
@@ -53,7 +55,7 @@ export const processTranslation = ({
     suffix = args.context;
 
   // @TODO: Update to the new format https://www.i18next.com/translation-function/plurals
-  } else if (typeof args.count !== 'undefined' && args.count !== 1 && args.count !== -1) {
+  } else if (typeof args[COUNT] !== 'undefined' && args[COUNT] !== 1 && args[COUNT] !== -1) {
     suffix = 'plural';
   }
 
@@ -69,12 +71,12 @@ export const processTranslation = ({
     ...replaceableArgs
   } = args;
 
-  // Replace placeholders like `{{count}}` with values from `args`
+  // Replace placeholders like `{{someText}}` with values from `args`
   return Object.entries(replaceableArgs).reduce(
     (v, [ name, value ]) => {
       const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
 
-      if (onError && !regexp.test(v)) {
+      if (onError && !regexp.test(v) && name !== COUNT) {
         onError(
           'REPLACE_ARGUMENT_NOT_FOUND',
           { key, argumentName: name, value },
