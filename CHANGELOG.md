@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 1.2.1
+
+### Patch Changes
+
+- 4b74c25: Fixing the error handling bug for `count` argument processing
+
 ## 1.2.0
 
 ### Minor Changes
