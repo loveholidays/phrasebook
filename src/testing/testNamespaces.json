@@ -2,10 +2,11 @@
   "ns1": {
     "title": "title from namespace 1",
     "textWithPlaceholders": "a {{ first }} b <1> c",
-    "stringWithParam": "text with parameter: {{wrongParam}}"
+    "stringWithParam": "text with parameter: {{param1}}"
   },
   "ns2": {
-    "title": "title from namespace 2"
+    "title": "title from namespace 2",
+    "stringWithParam": "text with parameters: {{param1}} {{param2}}"
   },
   "": {
     "search": {

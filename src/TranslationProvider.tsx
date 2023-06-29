@@ -3,7 +3,7 @@ import { DEFAULT_NAMESPACE } from './constants';
 
 import { processTranslation } from './processTranslation';
 import type {
-  Namespaces, Locale, TFunction, TranslationData, TranslationArgumentValue,
+  Namespaces, Locale, TFunction, TranslationData,
 } from './types';
 
 export interface TranslationContextValue {
@@ -21,11 +21,10 @@ export const TranslationContext = createContext<TranslationContextValue>({
 export interface ReplaceArgumentErrorParams {
   key: string;
   argumentName: string;
-  value: TranslationArgumentValue;
 }
 
 export type OnErrorCallback =
-  & ((errorType: 'REPLACE_ARGUMENT_NOT_FOUND', params: ReplaceArgumentErrorParams) => void);
+  & ((errorType: 'REPLACE_ARGUMENT_NOT_PASSED', params: ReplaceArgumentErrorParams) => void);
 
 interface TranslationProviderProps {
   locale: Locale;

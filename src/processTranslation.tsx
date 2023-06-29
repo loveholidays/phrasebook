@@ -71,18 +71,25 @@ export const processTranslation = ({
     ...replaceableArgs
   } = args;
 
+  if (onError) {
+    const replaceableParams = translation.match(/{{\s*\w*\s*}}/g);
+
+    replaceableParams?.forEach((p) => {
+      const param = p.replace(/({{|}})/g, '');
+
+      if (replaceableArgs[param] === undefined) {
+        onError(
+          'REPLACE_ARGUMENT_NOT_PASSED',
+          { key, argumentName: param },
+        );
+      }
+    });
+  }
+
   // Replace placeholders like `{{someText}}` with values from `args`
   return Object.entries(replaceableArgs).reduce(
     (v, [ name, value ]) => {
       const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
-
-      if (onError && !regexp.test(v) && name !== COUNT) {
-        onError(
-          'REPLACE_ARGUMENT_NOT_FOUND',
-          { key, argumentName: name, value },
-        );
-      }
-
       const localizedValue = String(formatArgument(locale, value));
 
       return v.replace(regexp, localizedValue);

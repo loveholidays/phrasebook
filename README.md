@@ -43,7 +43,7 @@ const App = () => (
     locale="en-gb"
     translations={translations}
     onError={(errorType, data) => {
-      const { key, argumentName, value } = data;
+      const { key, argumentName } = data;
     }}
   >
     // ...
