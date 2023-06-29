@@ -1,7 +1,13 @@
 ---
-'@loveholidays/phrasebook': minor
+'@loveholidays/phrasebook': major
 ---
 
+Breaking change:
+onError handler API:
+- removing `REPLACE_ARGUMENT_NOT_FOUND` error
+- adding `REPLACE_ARGUMENT_NOT_PASSED` error
+
+List if changes:
 - Checking that all the specified parameters in the translation string were passed
 - Stop triggering `onError` when passing the parameter that does not exist in the translation string
 - Changing the error type name `REPLACE_ARGUMENT_NOT_FOUND` -> `REPLACE_ARGUMENT_NOT_PASSED`
