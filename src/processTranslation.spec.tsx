@@ -18,6 +18,8 @@ describe('processTranslation', () => {
       [ 'empty', {}, '' ],
       [ 'title', { ns: 'ns1' }, 'title from namespace 1' ],
       [ 'stringWithParam', { param: 'foo' }, 'text with parameter: foo' ],
+      [ 'stringWithParam', { ns: 'ns1', param1: 'test1', param2: 'test2' }, 'text with parameter: test1' ],
+      [ 'stringWithParam', { ns: 'ns2', param1: 'test1', param2: 'test2' }, 'text with parameters: test1 test2' ],
     ])('%s %p => %s', (key, args, expected) => {
       expect(
         processTranslation({
@@ -54,16 +56,15 @@ describe('processTranslation', () => {
         locale,
         namespaces,
         key: 'stringWithParam',
-        args: { ns: 'ns1', param: 'foo' },
+        args: { param1: 'test' },
         onError,
       });
 
-      expect(result).toBe('text with parameter: {{wrongParam}}');
+      expect(result).toBe('text with parameter: {{ param  }}');
 
-      expect(onError).toHaveBeenCalledWith('REPLACE_ARGUMENT_NOT_FOUND', {
+      expect(onError).toHaveBeenCalledWith('REPLACE_ARGUMENT_NOT_PASSED', {
         key: 'stringWithParam',
         argumentName: 'param',
-        value: 'foo',
       });
     });
   });
