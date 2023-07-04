@@ -8,7 +8,7 @@ onError handler API:
 - removing `REPLACE_ARGUMENT_NOT_FOUND` error
 - adding `REPLACE_ARGUMENT_NOT_PASSED` error
 
-List if changes:
+List of changes:
 
 - Checking that all the specified parameters in the translation string are passed
 - Stop triggering `onError` when passing the parameter that does not exist in the translation string
