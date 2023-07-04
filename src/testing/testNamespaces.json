@@ -2,10 +2,11 @@
   "ns1": {
     "title": "title from namespace 1",
     "textWithPlaceholders": "a {{ first }} b <1> c",
-    "stringWithParam": "text with parameter: {{wrongParam}}"
+    "stringWithParam": "text with parameter: {{param1}}"
   },
   "ns2": {
-    "title": "title from namespace 2"
+    "title": "title from namespace 2",
+    "stringWithParam": "text with parameters: {{param1}} {{param2}}"
   },
   "": {
     "search": {
@@ -22,6 +23,6 @@
     "oneParamTwoComponents": "param first {{ first }} component one <1> component 2 <2> something at the end",
     "twoParamsOneComponent": "param first {{ first }} param second {{ second }} component one <1> something at the end",
     "componentWithChildren": "this makes it possible to <1>make some parts</1> of the <2>text</2> appear as links",
-    "stringWithParam": "text with parameter: {{param}}"
+    "stringWithParam": "text with parameter: {{ param  }}"
   }
 }
