@@ -70,7 +70,7 @@ export const useTranslation = (namespace?: string) => ({
  * @param {object} props.translations Translation for default locale.
  * @param {function} props.onError Callback could be used to track the error during translation processing.
  * */
-export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+export const TranslationProvider: React.FC<React.PropsWithChildren<TranslationProviderProps>> = ({
   locale,
   namespaces,
   translations,
