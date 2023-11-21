@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 2.0.1
+
+### Patch Changes
+
+- d3048ab: Fix React 18 compatibility by using explicit children prop in TranslationProvider
+
 ## 2.0.0
 
 ### Major Changes
