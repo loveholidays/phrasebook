@@ -11,7 +11,7 @@ Define([
     lifecycle='production',
     repository='loveholidays/phrasebook',
     techdocs='url:https://github.com/loveholidays/phrasebook/tree/master',
-    owner='digital-product-infrastructure',
+    owner='web-infrastructure',
     system='frontend',
     tags=['nodejs', 'typescript', 'open-source', 'i18n'],
     links=[
