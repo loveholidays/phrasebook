@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 2.0.2
+
+### Patch Changes
+
+- eddf17e: Fix bug using a hook in the t function
+
 ## 2.0.1
 
 ### Patch Changes
