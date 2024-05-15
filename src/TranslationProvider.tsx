@@ -52,14 +52,18 @@ export interface UseTranslationReturnValue {
   t: TFunction;
 }
 
-export const useTranslation = (namespace?: string) => ({
-  t: namespace
-    ? (key, args) => useContext(TranslationContext).t(key, {
-      ns: namespace,
-      ...args,
-    })
-    : useContext(TranslationContext).t,
-}) as UseTranslationReturnValue;
+export const useTranslation = (namespace?: string) => {
+  const { t } = useContext(TranslationContext);
+
+  return {
+    t: namespace
+      ? (key, args) => t(key, {
+        ns: namespace,
+        ...args,
+      })
+      : t,
+  } as UseTranslationReturnValue;
+};
 
 /**
  * TranslationProvider
