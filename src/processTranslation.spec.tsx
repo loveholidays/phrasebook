@@ -15,6 +15,7 @@ describe('processTranslation', () => {
       [ 'reviews', { count: 123 }, '123 reviews' ],
       [ 'boardBasis.code', {}, 'Board Basis' ],
       [ 'boardBasis.code', { context: 'AI' }, 'All Inclusive' ],
+      [ 'boardBasis.code', { context: 'AI', count: 2 }, 'All Inclusive plural' ],
       [ 'empty', {}, '' ],
       [ 'title', { ns: 'ns1' }, 'title from namespace 1' ],
       [ 'stringWithParam', { param: 'foo' }, 'text with parameter: foo' ],

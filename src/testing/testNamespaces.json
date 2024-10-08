@@ -16,7 +16,8 @@
     "reviews_plural": "{{count}} reviews",
     "boardBasis": {
       "code": "Board Basis",
-      "code_AI": "All Inclusive"
+      "code_AI": "All Inclusive",
+      "code_AI_plural": "All Inclusive plural"
     },
     "empty": "",
     "translationComponent": "param first {{ first }} param second {{ second }} component one <1> component 2 <2> something at the end",

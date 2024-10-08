@@ -49,14 +49,11 @@ export const processTranslation = ({
     throw new Error(`Missing translation: "${key}"`);
   }
 
-  let suffix;
-
-  if (args.context) {
-    suffix = args.context;
+  let suffix = args.context;
 
   // @TODO: Update to the new format https://www.i18next.com/translation-function/plurals
-  } else if (typeof args[COUNT] !== 'undefined' && args[COUNT] !== 1 && args[COUNT] !== -1) {
-    suffix = 'plural';
+  if (typeof args[COUNT] !== 'undefined' && args[COUNT] !== 1 && args[COUNT] !== -1) {
+    suffix = suffix ? `${suffix}_plural` : 'plural';
   }
 
   const translation = root[suffix ? `${lastPart}_${suffix}` : lastPart] ?? root[lastPart];
