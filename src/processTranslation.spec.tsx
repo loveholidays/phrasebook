@@ -8,13 +8,16 @@ describe('processTranslation', () => {
   describe('Should return expected translated value', () => {
     it.each([
       [ 'search.label', {}, 'Search' ],
+      [ 'search.label', { count: 10 }, 'Search' ],
       [ 'reviews', { count: -10 }, '-10 reviews' ],
       [ 'reviews', { count: 0 }, '0 reviews' ],
       [ 'reviews', { count: 1 }, '1 review' ],
       [ 'reviews', { count: -1 }, '-1 review' ],
       [ 'reviews', { count: 123 }, '123 reviews' ],
       [ 'boardBasis.code', {}, 'Board Basis' ],
-      [ 'boardBasis.code', { context: 'AI' }, 'All Inclusive' ],
+      [ 'boardBasis.code', { context: 'AI' }, 'All Inclusive hotel' ],
+      [ 'boardBasis.code', { context: 'AI', count: 1 }, 'All Inclusive hotel' ],
+      [ 'boardBasis.code', { context: 'AI', count: 2 }, 'All Inclusive hotels' ],
       [ 'empty', {}, '' ],
       [ 'title', { ns: 'ns1' }, 'title from namespace 1' ],
       [ 'stringWithParam', { param: 'foo' }, 'text with parameter: foo' ],
