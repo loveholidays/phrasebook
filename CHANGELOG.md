@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 2.1.1
+
+### Patch Changes
+
+- 0bc5fbc: bump the version
+
 ## 2.1.0
 
 ### Minor Changes
