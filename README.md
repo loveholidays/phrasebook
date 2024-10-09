@@ -9,7 +9,7 @@ Made with ❤️ by [loveholidays.com](https://www.loveholidays.com)
 - Tree-shakeable
 - Similar interface to `react-i18next`
 - Native ESM module with TypeScript type definitions
-- Small bundle size (<1kb)
+- Small bundle size (~1kb)
 
 This package exports native [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and does not provide a CommonJS export.
 
@@ -17,9 +17,9 @@ This package exports native [ESM](https://developer.mozilla.org/en-US/docs/Web/J
 
 | Package                  | Bundle size (gzip)                                                | Difference |
 | ------------------------ | ----------------------------------------------------------------- | ---------- |
-| @loveholidays/phrasebook | [956b](https://bundlephobia.com/package/@loveholidays/phrasebook) | baseline   |
-| @lingui/react            | [1.6kb](https://bundlephobia.com/package/@lingui/react@3.17.2)    | + 68%      |
-| react-i18next            | [7.1kb](https://bundlephobia.com/package/react-i18next@12.2.0)    | + 650%     |
+| @loveholidays/phrasebook | [1.1kb](https://bundlephobia.com/package/@loveholidays/phrasebook)| baseline   |
+| @lingui/react@4.11       | [1.4kb](https://bundlephobia.com/package/@lingui/react@4.11.4)    | + 27%      |
+| react-i18next@15.0       | [5.3kb](https://bundlephobia.com/package/react-i18next@15.0.2)    | + 482%     |
 
 ## Installation
 
