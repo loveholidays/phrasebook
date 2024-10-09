@@ -8,6 +8,7 @@ describe('processTranslation', () => {
   describe('Should return expected translated value', () => {
     it.each([
       [ 'search.label', {}, 'Search' ],
+      [ 'search.label', { count: 10 }, 'Search' ],
       [ 'reviews', { count: -10 }, '-10 reviews' ],
       [ 'reviews', { count: 0 }, '0 reviews' ],
       [ 'reviews', { count: 1 }, '1 review' ],
