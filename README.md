@@ -15,11 +15,11 @@ This package exports native [ESM](https://developer.mozilla.org/en-US/docs/Web/J
 
 ## Bundle size comparisons
 
-| Package                  | Bundle size (gzip)                                                | Difference |
-| ------------------------ | ----------------------------------------------------------------- | ---------- |
-| @loveholidays/phrasebook | [1.1kb](https://bundlephobia.com/package/@loveholidays/phrasebook)| baseline   |
-| @lingui/react@4.11       | [1.4kb](https://bundlephobia.com/package/@lingui/react@4.11.4)    | + 27%      |
-| react-i18next@15.0       | [5.3kb](https://bundlephobia.com/package/react-i18next@15.0.2)    | + 482%     |
+| Package                  | Bundle size (gzip)                                                 | Difference |
+| ------------------------ | ------------------------------------------------------------------ | ---------- |
+| @loveholidays/phrasebook | [1.1kb](https://bundlephobia.com/package/@loveholidays/phrasebook) | baseline   |
+| @lingui/react@4.11       | [1.4kb](https://bundlephobia.com/package/@lingui/react@4.11.4)     | + 27%      |
+| react-i18next@15.0       | [5.3kb](https://bundlephobia.com/package/react-i18next@15.0.2)     | + 482%     |
 
 ## Installation
 
