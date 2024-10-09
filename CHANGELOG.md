@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 2.1.0
+
+### Minor Changes
+
+- 8ce252e: Support mix of context and plural form
+
 ## 2.0.2
 
 ### Patch Changes
