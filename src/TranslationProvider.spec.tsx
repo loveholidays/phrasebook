@@ -102,7 +102,7 @@ describe('TranslationProvider', () => {
       >
         <TestComponent
           name="reviews"
-          args={{ count: 12345, }}
+          args={{ count: 12345 }}
         />
         <TestComponent
           name="reviews"
