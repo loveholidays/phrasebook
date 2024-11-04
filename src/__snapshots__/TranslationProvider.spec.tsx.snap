@@ -40,6 +40,9 @@ exports[`TranslationProvider merges namespaces when nesting providers 1`] = `
 exports[`TranslationProvider should override number format 1`] = `
 <DocumentFragment>
   <span>
+    12,345 reviews
+  </span>
+  <span>
     12.345 reviews
   </span>
 </DocumentFragment>
