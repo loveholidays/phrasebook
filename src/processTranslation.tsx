@@ -23,6 +23,7 @@ const COUNT = 'count';
 
 interface ProcessTranslationParams {
   locale: Locale;
+  numberLocale?: Locale,
   namespaces: Namespaces;
   key: string;
   onError?: OnErrorCallback;
@@ -31,6 +32,7 @@ interface ProcessTranslationParams {
 
 export const processTranslation = ({
   locale,
+  numberLocale = locale,
   namespaces,
   key,
   onError,
@@ -87,7 +89,7 @@ export const processTranslation = ({
   return Object.entries(replaceableArgs).reduce(
     (v, [ name, value ]) => {
       const regexp = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
-      const localizedValue = String(formatArgument(locale, value));
+      const localizedValue = String(formatArgument(numberLocale, value));
 
       return v.replace(regexp, localizedValue);
     },

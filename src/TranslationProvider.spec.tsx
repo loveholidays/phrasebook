@@ -93,4 +93,20 @@ describe('TranslationProvider', () => {
 
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('should override number format', () => {
+    const { asFragment } = render(
+      <TranslationProvider
+        locale={locale}
+        namespaces={namespaces}
+      >
+        <TestComponent
+          name="reviews"
+          args={{ count: 12345, numberLocale: "de-DE" }}
+        />
+      </TranslationProvider>
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  })
 });

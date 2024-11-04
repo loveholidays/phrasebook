@@ -71,4 +71,19 @@ describe('processTranslation', () => {
       });
     });
   });
+
+  describe('Override number locale', () => {
+    it("should format number based on override locale", () => {
+      const result = processTranslation({
+        locale,
+        numberLocale: "de-DE",
+        namespaces,
+        key: 'reviews',
+        args: { count: 12345 },
+        onError,
+      });
+
+      expect(result).toBe('12.345 reviews');
+    })
+  })
 });
