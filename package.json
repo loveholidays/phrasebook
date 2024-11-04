@@ -18,7 +18,8 @@
     "lint": "eslint --ext .ts,.tsx ./src && prettier -c '**/*.json' '**/*.md'",
     "lint:fix": "eslint --ext .ts,.tsx ./src --fix && prettier -w '**/*.json' '**/*.md'",
     "lint:info": "eslint --print-config .eslintrc.js",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "yalc:publish": "npm run build && npm pack && npx -y yalc publish --push"
   },
   "repository": {
     "type": "git",
