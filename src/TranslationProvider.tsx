@@ -94,14 +94,13 @@ export const TranslationProvider: React.FC<React.PropsWithChildren<TranslationPr
         locale,
         namespaces: mergedNamespaces,
         t: (key: string, args: TranslationArguments | undefined): string => {
-          const numberLocale = args?.numberLocale
-            ? args.numberLocale
+          const targetLocale = args?.overrideLocale
+            ? args.overrideLocale
             : locale;
 
           return processTranslation({
             namespaces: mergedNamespaces,
-            locale,
-            numberLocale,
+            locale: targetLocale,
             key,
             args,
             onError,

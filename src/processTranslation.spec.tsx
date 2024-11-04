@@ -75,8 +75,7 @@ describe('processTranslation', () => {
   describe('Override number locale', () => {
     it('should format number based on override locale', () => {
       const result = processTranslation({
-        locale,
-        numberLocale: 'de-DE',
+        locale: 'de-DE',
         namespaces,
         key: 'reviews',
         args: { count: 12345 },

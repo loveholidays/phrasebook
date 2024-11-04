@@ -9,7 +9,7 @@ export type TranslationArgumentValue = string | number | undefined;
 export type TranslationArguments = {
   count?: number;
   context?: string;
-  numberLocale?: Locale;
+  overrideLocale?: Locale;
   [name: string]: TranslationArgumentValue;
 };
 

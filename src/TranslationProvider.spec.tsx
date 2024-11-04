@@ -106,7 +106,7 @@ describe('TranslationProvider', () => {
         />
         <TestComponent
           name="reviews"
-          args={{ count: 12345, numberLocale: 'de-DE' }}
+          args={{ count: 12345, overrideLocale: 'de-DE' }}
         />
       </TranslationProvider>,
     );
