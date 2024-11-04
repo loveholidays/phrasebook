@@ -23,7 +23,7 @@ const COUNT = 'count';
 
 interface ProcessTranslationParams {
   locale: Locale;
-  numberLocale?: Locale,
+  numberLocale?: Locale;
   namespaces: Namespaces;
   key: string;
   onError?: OnErrorCallback;

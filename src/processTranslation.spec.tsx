@@ -73,10 +73,10 @@ describe('processTranslation', () => {
   });
 
   describe('Override number locale', () => {
-    it("should format number based on override locale", () => {
+    it('should format number based on override locale', () => {
       const result = processTranslation({
         locale,
-        numberLocale: "de-DE",
+        numberLocale: 'de-DE',
         namespaces,
         key: 'reviews',
         args: { count: 12345 },
@@ -84,6 +84,6 @@ describe('processTranslation', () => {
       });
 
       expect(result).toBe('12.345 reviews');
-    })
-  })
+    });
+  });
 });

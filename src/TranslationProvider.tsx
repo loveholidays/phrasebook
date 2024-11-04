@@ -5,7 +5,7 @@ import { processTranslation } from './processTranslation';
 import type {
   Namespaces, Locale, TFunction, TranslationData,
 } from './types';
-import {TranslationArguments} from "./types";
+import { TranslationArguments } from './types';
 
 export interface TranslationContextValue {
   locale: Locale;
@@ -94,20 +94,18 @@ export const TranslationProvider: React.FC<React.PropsWithChildren<TranslationPr
         locale,
         namespaces: mergedNamespaces,
         t: (key: string, args: TranslationArguments | undefined): string => {
-          let numberLocale: Locale = locale;
-          if (args?.numberLocale) {
-            numberLocale = args.numberLocale;
-            delete args.numberLocale;
-          }
+          const numberLocale = args?.numberLocale
+            ? args.numberLocale
+            : locale;
 
           return processTranslation({
-            locale,
-            numberLocale: numberLocale ?? locale,
             namespaces: mergedNamespaces,
+            locale,
+            numberLocale,
             key,
             args,
             onError,
-          })
+          });
         },
       }}
     >
