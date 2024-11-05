@@ -31,6 +31,34 @@ $ npm i -S @loveholidays/phrasebook
 $ yarn add @loveholidays/phrasebook
 ```
 
+## Using a dev version of Phrasebook in a dev app
+
+We can use yalc for this, which creates a local store that we can publish and pull dependencies from.
+
+To publish Phrasebook to the local store:
+
+```bash
+npx --yes yalc publish
+```
+
+In your target repo (eg. sunrise), update the dependency to local Phrasebook:
+
+```bash
+npx yalc add @loveholidays/phrasebook
+```
+
+If you make a change in your local Phrasebook repo, update the local store and the target repo:
+
+```bash
+npx yalc publish --push
+```
+
+To reset the dependency of Phraseboook, in your target repo run:
+
+```bash
+npx yalc remove @loveholidays/phrasebook
+```
+
 ## Usage
 
 Use the `TranslationProvider` to create the localisation context:
