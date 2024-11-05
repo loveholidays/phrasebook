@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 status.json
+.yalc
+yalc.lock
+loveholidays-phrasebook-*.tgz
 
 # dependencies
 /node_modules
