@@ -1,5 +1,11 @@
 # @loveholidays/phrasebook
 
+## 2.2.0
+
+### Minor Changes
+
+- cd62939: Adding optional locale override
+
 ## 2.1.3
 
 ### Patch Changes

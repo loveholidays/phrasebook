@@ -1,6 +1,6 @@
 {
   "name": "@loveholidays/phrasebook",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "A lightweight translation library for React/Preact projects with a similar interface to react-i18next",
   "sideEffects": false,
   "module": "lib/index.js",
