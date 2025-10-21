@@ -51,9 +51,37 @@ export const processTranslation = ({
 
   let suffix = args.context;
 
-  // @TODO: Update to the new format https://www.i18next.com/translation-function/plurals
-  if (typeof args[COUNT] !== 'undefined' && args[COUNT] !== 1 && args[COUNT] !== -1) {
-    suffix = suffix ? `${suffix}_plural` : 'plural';
+  if (typeof args[COUNT] !== 'undefined') {
+    const count = args[COUNT] as number;
+    let pluralSuffix: string | undefined;
+
+    if (count === 0 && root[`${lastPart}_zero`]) {
+      pluralSuffix = 'zero';
+    } else {
+      try {
+        const pluralRules = new Intl.PluralRules(locale);
+        const category = pluralRules.select(Math.abs(count));
+        const categoryKey = suffix ? `${lastPart}_${suffix}_${category}` : `${lastPart}_${category}`;
+
+        if (root[categoryKey]) {
+          pluralSuffix = category;
+        } else if (!suffix && root[`${lastPart}_${category}`]) {
+          pluralSuffix = category;
+        } else if (root[`${lastPart}_other`] || (suffix && root[`${lastPart}_${suffix}_other`])) {
+          pluralSuffix = 'other';
+        } else if (count !== 1 && count !== -1) {
+          pluralSuffix = 'plural';
+        }
+      } catch {
+        if (count !== 1 && count !== -1) {
+          pluralSuffix = 'plural';
+        }
+      }
+    }
+
+    if (pluralSuffix) {
+      suffix = suffix ? `${suffix}_${pluralSuffix}` : pluralSuffix;
+    }
   }
 
   const translation = root[suffix ? `${lastPart}_${suffix}` : lastPart] ?? root[lastPart];
