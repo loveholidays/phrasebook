@@ -85,4 +85,108 @@ describe('processTranslation', () => {
       expect(result).toBe('12.345 reviews');
     });
   });
+
+  describe('i18next plural format support', () => {
+    describe('Polish plurals (one, few, many, other)', () => {
+      it.each([
+        [ 'nights_pl', { count: 1 }, '1 noc', 'one' ],
+        [ 'nights_pl', { count: 2 }, '2 noce', 'few' ],
+        [ 'nights_pl', { count: 3 }, '3 noce', 'few' ],
+        [ 'nights_pl', { count: 4 }, '4 noce', 'few' ],
+        [ 'nights_pl', { count: 5 }, '5 nocy', 'many' ],
+        [ 'nights_pl', { count: 10 }, '10 nocy', 'many' ],
+        [ 'nights_pl', { count: 21 }, '21 nocy', 'many' ],
+        [ 'nights_pl', { count: 22 }, '22 noce', 'few' ],
+        [ 'nights_pl', { count: 25 }, '25 nocy', 'many' ],
+        [ 'nights_pl', { count: 100 }, '100 nocy', 'many' ],
+      ])('%s with count=%s should return "%s" (%s)', (key, args, expected) => {
+        const result = processTranslation({
+          locale: 'pl',
+          namespaces,
+          key,
+          args,
+          onError,
+        });
+
+        expect(result).toBe(expected);
+      });
+    });
+
+    describe('Arabic plurals (zero, one, two, few, many, other)', () => {
+      it.each([
+        [ 'nights_ar', { count: 0 }, '٠ ليلة', 'zero' ],
+        [ 'nights_ar', { count: 1 }, 'ليلة واحدة', 'one' ],
+        [ 'nights_ar', { count: 2 }, 'ليلتان', 'two' ],
+        [ 'nights_ar', { count: 3 }, '٣ ليالٍ', 'few' ],
+        [ 'nights_ar', { count: 10 }, '١٠ ليالٍ', 'few' ],
+        [ 'nights_ar', { count: 11 }, '١١ ليلة', 'many' ],
+        [ 'nights_ar', { count: 100 }, '١٠٠ ليلة', 'other' ],
+      ])('%s with count=%s should return "%s" (%s)', (key, args, expected) => {
+        const result = processTranslation({
+          locale: 'ar',
+          namespaces,
+          key,
+          args,
+          onError,
+        });
+
+        expect(result).toBe(expected);
+      });
+    });
+
+    describe('Czech plurals (one, few, many, other)', () => {
+      it.each([
+        [ 'nights_cs', { count: 1 }, '1 noc', 'one' ],
+        [ 'nights_cs', { count: 2 }, '2 noci', 'few' ],
+        [ 'nights_cs', { count: 3 }, '3 noci', 'few' ],
+        [ 'nights_cs', { count: 4 }, '4 noci', 'few' ],
+        [ 'nights_cs', { count: 5 }, '5 nocí', 'many' ],
+        [ 'nights_cs', { count: 10 }, '10 nocí', 'many' ],
+      ])('%s with count=%s should return "%s" (%s)', (key, args, expected) => {
+        const result = processTranslation({
+          locale: 'cs',
+          namespaces,
+          key,
+          args,
+          onError,
+        });
+
+        expect(result).toBe(expected);
+      });
+    });
+
+    describe('Backward compatibility with _plural suffix', () => {
+      it('should still work with old _plural format', () => {
+        expect(
+          processTranslation({
+            locale: 'en-GB',
+            namespaces,
+            key: 'reviews',
+            args: { count: 0 },
+            onError,
+          }),
+        ).toBe('0 reviews');
+
+        expect(
+          processTranslation({
+            locale: 'en-GB',
+            namespaces,
+            key: 'reviews',
+            args: { count: 1 },
+            onError,
+          }),
+        ).toBe('1 review');
+
+        expect(
+          processTranslation({
+            locale: 'en-GB',
+            namespaces,
+            key: 'reviews',
+            args: { count: 5 },
+            onError,
+          }),
+        ).toBe('5 reviews');
+      });
+    });
+  });
 });

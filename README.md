@@ -128,7 +128,7 @@ const MyComponent = () => (
 The goal is to provide a lightweight alternative for the most common used features of `react-i18next`, although phrasebook won't ever be 100% compatible with that.
 
 - There is no support for [translation backends](https://www.i18next.com/how-to/add-or-load-translations#combined-with-a-backend-plugin), the translation object must be loaded and passed in to the `TranslationProvider`.
-- The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format), the currently supported features are: nested translations, `_plural` suffix, [contexts](https://www.i18next.com/translation-function/context#basic).
+- The translation object format is not fully compatible with the [i18next JSON format](https://www.i18next.com/misc/json-format), the currently supported features are: nested translations, `_plural` suffix (legacy), i18next plural suffixes (`_zero`, `_one`, `_two`, `_few`, `_many`, `_other`), and [contexts](https://www.i18next.com/translation-function/context#basic).
 
 ## Namespaces
 
