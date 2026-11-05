@@ -123,7 +123,8 @@ describe('processTranslation', () => {
         [ 'nights_ar', { count: 100 }, '١٠٠ ليلة', 'other' ],
       ])('%s with count=%s should return "%s" (%s)', (key, args, expected) => {
         const result = processTranslation({
-          locale: 'ar',
+          // Request Arabic digits explicitly; locale defaults vary with Node's ICU data.
+          locale: 'ar-u-nu-arab',
           namespaces,
           key,
           args,
