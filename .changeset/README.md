@@ -11,7 +11,7 @@ We have a quick list of common questions to get you started engaging with this p
 
 1. Run `npm run changeset` before pushing your changes. This will launch an interactive CLI dialog where you can describe your changes to all the affected packages, and you can specify which version should be bumped (major / minor / patch).
 2. This will create a YAML file in this folder with the details you described. This file has a random generated name, so multiple YAML files can be stored here. Push this file to your branch.
-3. When we publish our changes from the `main` branch, Changesets aggregates all the YAML files in this repository and figures out what versions need to be bumped. For example, if there were 2 changes for `@loveholidays/phrasebook` where one of them is a breaking change (updating major) and one of them is a bugfix (updating patch), then it will just update the major as a result, and will include both changes in the changelog. It also publishes the new versions, updates the Github changelog and deletes these YAML files.
+3. On `main`, Changesets determines the version bump, updates the changelog, and removes the consumed changeset files. For example, a breaking change and a bugfix together produce a major version bump. The workflow builds and stages that version on npm using OIDC. A package maintainer must review and approve it with 2FA before publication, then create the release tag. See [the release instructions](../CONTRIBUTING.md#approving-a-release).
 
 **Not every change requires a changeset!**
 

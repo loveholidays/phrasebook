@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Build and Stage
 
 on:
   push:
@@ -7,24 +7,24 @@ on:
 
 jobs:
   build:
-    name: Build and Publish
+    name: Build and Stage
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.LOVEHOLIDAYS_BUILD_PAT }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Checkout [main]
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
       - run: npm install
 
       # Sets HAS_CHANGESETS output to "false" when there are no changesets available, so we can skip
-      # building and publishing when there were only documentation changes etc.
+      # building and staging when there were only documentation changes etc.
       - name: Check changesets
         id: changesets
         run: |
@@ -33,7 +33,7 @@ jobs:
           npx changeset status --output status.json
           HAS_CHANGESETS=$(node -e "console.log(require('./status.json').changesets.length > 0)")
           rm -rf status.json
-          echo "::set-output name=HAS_CHANGESETS::$HAS_CHANGESETS"
+          echo "HAS_CHANGESETS=$HAS_CHANGESETS" >> "$GITHUB_OUTPUT"
 
       - name: Run tests
         if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
@@ -57,9 +57,10 @@ jobs:
           git commit -m "Update package versions"
           git push origin main
 
-      - name: Publish packages
+      - name: Install npm for trusted publishing
         if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npx changeset publish
-          git push --follow-tags
+        run: npm install --global 'npm@^11.15.0'
+
+      - name: Stage package for approval
+        if: steps.changesets.outputs.HAS_CHANGESETS == 'true'
+        run: npm stage publish --access public --tag latest
